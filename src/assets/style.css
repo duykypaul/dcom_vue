@@ -2557,7 +2557,9 @@ select.form-control:focus {
 }
 
 .ass1-header {
-    position: relative;
+    position: fixed;
+    width: 100vw;
+    top: 0;
     padding-top: 15px;
     padding-bottom: 15px;
     background-color: #ffffff;
@@ -2567,7 +2569,7 @@ select.form-control:focus {
     box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
 }
 
-.ass1-header > .container {
+.ass1-header > .container-fluid {
     flex-wrap: wrap;
     align-items: center;
     align-content: center;
@@ -2578,12 +2580,12 @@ select.form-control:focus {
 }
 
 @media only screen and (min-width: 1211px) {
-    .ass1-header > .container {
+    .ass1-header > .container-fluid {
         justify-content: space-between;
     }
 }
 
-.ass1-header > .container.static {
+.ass1-header > .container-fluid.static {
     position: static;
 }
 
@@ -3040,4 +3042,28 @@ select.form-control:focus {
 .ass1-aside .ass1-aside__edit-post-head .ass1-checkbox span {
     width: 20px;
     height: 20px;
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar
+{
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-image: -webkit-gradient(linear,
+    left bottom,
+    left top,
+    color-stop(0.44, rgb(122,153,217)),
+    color-stop(0.72, rgb(73,125,189)),
+    color-stop(0.86, rgb(28,58,148)));
 }

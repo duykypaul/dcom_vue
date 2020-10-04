@@ -1,17 +1,17 @@
 <template>
 	<header>
 		<div class="ass1-header">
-			<div class="container">
+			<div class="container-fluid">
 				<router-link class="ass1-logo" to="/">
 					Dcom Community
 				</router-link>
 				<header-navigation/>
 				<header-search/>
 				<router-link class="ass1-header__btn-upload ass1-btn" to="/post-upload">
-					<i class="icon-Upvote"></i> Upload
+					<i class="icon-Upvote"></i> {{ $t('header.upload') }}
 				</router-link>
 				<router-link class="ass1-header__btn-upload ass1-btn" to="/login" v-if="!getIsLogin">
-					Login
+					{{ $t('header.sign-in') }}
 				</router-link>
 				<div class="wrapper-user" v-else>
 					<router-link :to="{name: 'user-page', params: {id: getCurrentUser.id}}" class="user-header">
@@ -20,8 +20,9 @@
 						</span>
 						<span class="email">{{getCurrentUser.email}}</span>
 					</router-link>
-					<div @click.prevent="handleLogOut" class="logout">Logout</div>
+					<div @click.prevent="handleLogOut" class="logout">{{ $t('header.sign-out') }}</div>
 				</div>
+				<locale-changer/>
 			</div>
 		</div>
 	</header>
@@ -32,10 +33,11 @@
 	import HeaderNavigation from "./HeaderNavigation";
 	import HeaderSearch from "./HeaderSearch";
 	import {mapActions, mapGetters} from "vuex";
+	import LocaleChanger from "./LocaleChanger";
 	
 	export default {
 		name: "CompHeader",
-		components: {HeaderSearch, HeaderNavigation},
+		components: {LocaleChanger, HeaderSearch, HeaderNavigation},
 		data() {
 			return {}
 		},

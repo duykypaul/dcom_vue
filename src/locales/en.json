@@ -1,0 +1,9 @@
+{
+	"header": {
+		"category": "Category",
+		"find": "What are you looking for ...",
+		"upload": "Upload",
+		"sign-in": "Sign in",
+		"sign-out": "Sign out"
+	}
+}

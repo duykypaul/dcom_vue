@@ -41,5 +41,7 @@
 </script>
 
 <style scoped>
-
+	.row {
+		margin: 68px auto;
+	}
 </style>

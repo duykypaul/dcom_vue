@@ -1,0 +1,9 @@
+{
+  "header": {
+	  "category": "Danh mục",
+	  "find": "Nhập từ khóa ...",
+	  "upload" : "Đăng ảnh",
+	  "sign-in": "Đăng nhập",
+	  "sign-out": "Đăng xuất"
+  }
+}

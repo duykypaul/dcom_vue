@@ -2,7 +2,7 @@
 	<div class="ass1-header__search">
 		<form @submit.prevent="handleSearch" action="#">
 			<label>
-				<input class="form-control" name="search-text" placeholder="Nhập từ khóa ..." required type="search"
+				<input class="form-control" name="search-text" :placeholder="$t('header.find')" required type="search"
 				       v-model="querySearch">
 				<i class="icon-Search"></i>
 			</label>

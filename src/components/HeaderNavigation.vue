@@ -2,7 +2,7 @@
 	<nav>
 		<ul class="ass1-header__menu">
 			<li>
-				<a href="#">Danh mục</a>
+				<a href="#">{{$t('header.category')}}</a>
 				<div class="ass1-header__nav" style="display: none;">
 					<div class="container">
 						<ul>

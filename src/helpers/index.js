@@ -20,7 +20,8 @@ let removeVietnameseFromString = (str) => {
 	.replace(/[-]+/g, "-")
 	.replace(/-$/, "");
 	return str;
-}
+};
+
 let parseJwt = (token) => {
 	try {
 		let base64Url = token.split('.')[1];
@@ -44,15 +45,12 @@ let isNotExpiryJwt = (token) => {
 };
 
 const replaceAll = function (originStr, search, replacement) {
-	let target = originStr;
-	return target.toLowerCase().split(search.toLowerCase()).join(replacement);
+	return originStr.toLowerCase().split(search.toLowerCase()).join(replacement);
 };
 
 const checkImageURL = (imageURL) => {
-	if (!imageURL.match(/^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)$/i)) {
-		return false;
-	}
-	return true;
+	return imageURL.match(/^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)$/i);
+	
 };
 
 const checkImageFile = (file) => {
@@ -63,11 +61,9 @@ const checkImageFile = (file) => {
 		return false
 	}
 	
-	if (type.lastIndexOf('png') != -1 || type.lastIndexOf('jpeg') != -1 ||
-		type.lastIndexOf('jpg') != -1 || type.lastIndexOf('gif') != -1) {
-		return true
-	}
-	return false;
+	return type.lastIndexOf('png') != -1 || type.lastIndexOf('jpeg') != -1 ||
+		type.lastIndexOf('jpg') != -1 || type.lastIndexOf('gif') != -1;
+	
 };
 
 export {
