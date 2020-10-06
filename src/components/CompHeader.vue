@@ -34,6 +34,7 @@
 	import HeaderSearch from "./HeaderSearch";
 	import {mapActions, mapGetters} from "vuex";
 	import LocaleChanger from "./LocaleChanger";
+	import {getAvatar} from "../helpers";
 	
 	export default {
 		name: "CompHeader",
@@ -47,10 +48,7 @@
 				'getCurrentUser'
 			]),
 			getImageAvatar() {
-				if (this.getCurrentUser.profilePicture) {
-					return this.getCurrentUser.profilePicture;
-				}
-				return '/dist/images/avatar-02.png';
+				return getAvatar(this.getCurrentUser.profilePicture);
 			},
 		},
 		methods: {

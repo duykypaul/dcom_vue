@@ -66,11 +66,20 @@ const checkImageFile = (file) => {
 	
 };
 
+const getAvatar = (urlImage) => {
+	if (urlImage.startsWith("http")) {
+		return urlImage;
+	} else {
+		return "http://localhost:1102/api/users/get-image/" + urlImage;
+	}
+};
+
 export {
 	parseJwt,
 	isNotExpiryJwt,
 	replaceAll,
 	checkImageURL,
 	checkImageFile,
-	removeVietnameseFromString
+	removeVietnameseFromString,
+	getAvatar
 }

@@ -13,7 +13,7 @@
 
 <script>
 	import moment from 'moment';
-	import {replaceAll} from "../helpers";
+	import {getAvatar, replaceAll} from "../helpers";
 	
 	export default {
 		name: "post-item-header",
@@ -34,10 +34,7 @@
 				return moment(this.post.createdAt).fromNow();
 			},
 			getImageAvatar() {
-				if (this.post.user.profilePicture) {
-					return this.post.user.profilePicture;
-				}
-				return '/dist/images/avatar-02.png';
+				return getAvatar(this.post.user.profilePicture);
 			},
 			formatFullname() {
 				if (this.querySearch) {

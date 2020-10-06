@@ -46,6 +46,7 @@
 
 <script>
 	import {mapGetters} from "vuex";
+	import {getAvatar} from "../helpers";
 	
 	export default {
 		name: "user-page-info",
@@ -58,10 +59,7 @@
 				'getCurrentUser'
 			]),
 			getAvatar() {
-				if (this.user.profilePicture) {
-					return this.user.profilePicture;
-				}
-				return '/dist/images/cat-1634369_1920.jpg';
+				return getAvatar(this.getCurrentUser.profilePicture);
 			},
 			isCurrentUser() {
 				if (this.getCurrentUser) {

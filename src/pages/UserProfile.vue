@@ -5,13 +5,13 @@
 			
 			<div class="ass1-login__form">
 				<div class="avatar">
-					<img :src="getAvatar" alt="">
+					<img :src="getAvatarImage" alt="">
 				</div>
 				<form @submit.prevent="handleEditProfile" action="#" v-if="getCurrentUser">
 					<input
-						:value="getCurrentUser.fullname"
+						:value="getCurrentUser.username"
 						class="form-control"
-						placeholder="Tên ..." required="" type="text" v-on:input="fullName = $event.target.value">
+						placeholder="Tên ..." required="" type="text" v-on:input="username = $event.target.value">
 					
 					<select
 						:value="getCurrentUser.gender"
@@ -41,12 +41,13 @@
 
 <script>
 	import {mapActions, mapGetters} from 'vuex';
+	import {getAvatar} from "../helpers";
 	
 	export default {
 		name: "user-profile",
 		data() {
 			return {
-				fullName: '',
+				username: '',
 				gender: '',
 				description: '',
 				avatar: {
@@ -70,11 +71,8 @@
 			...mapGetters([
 				'getCurrentUser'
 			]),
-			getAvatar() {
-				if (this.avatar.base64 === '' && this.getCurrentUser) {
-					return this.getCurrentUser.profilepicture;
-				}
-				return this.avatar.base64;
+			getAvatarImage() {
+				return getAvatar(this.getCurrentUser.profilePicture);
 			}
 			
 		},
@@ -83,11 +81,11 @@
 				'updateProfile'
 			]),
 			checkCurrentUser() {
-				console.log("this.getCurrentUser.USERID", this.getCurrentUser.USERID);
+				console.log("this.getCurrentUser.USERID", this.getCurrentUser.id);
 				console.log("this.userId", this.userId);
 				
-				if (this.getCurrentUser.USERID && this.userId) {
-					if (this.userId != this.getCurrentUser.USERID) {
+				if (this.getCurrentUser.id && this.userId) {
+					if (this.userId != this.getCurrentUser.id) {
 						this.$router.push({name: 'home', query: {direction: this.$route.name}});
 					}
 				} else {
@@ -96,14 +94,15 @@
 			},
 			handleEditProfile() {
 				if (!this.gender) this.gender = this.getCurrentUser.gender;
-				if (!this.fullName) this.fullName = this.getCurrentUser.fullname;
+				if (!this.username) this.username = this.getCurrentUser.username;
 				if (!this.description) this.description = this.getCurrentUser.description;
 				
-				if (this.fullName && this.description && this.gender) {
+				if (this.username && this.description && this.gender) {
 					let data = {
-						fullname: this.fullName,
+						username: this.username,
 						description: this.description,
-						gender: this.gender
+						gender: this.gender,
+						id: this.userId
 					};
 					
 					if (this.avatar.objFile) {

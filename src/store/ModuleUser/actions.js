@@ -163,34 +163,35 @@ export default {
 			}
 		}
 	},
-	async updateProfile({commit}, {fullname = '', description = '', gender = '', objFile = null}) {
+	async updateProfile({commit}, {username = '', description = '', gender = '', objFile = null, id = null}) {
 		commit('SET_LOADING', true);
 		try {
 			let bodyFormData = new FormData();
 			
 			bodyFormData.append('gender', gender);
-			bodyFormData.append('fullname', fullname);
+			bodyFormData.append('username', username);
 			bodyFormData.append('description', description);
 			
 			// For avatar
 			if (objFile) {
-				bodyFormData.append('avatar', objFile);
+				bodyFormData.append('fileImage', objFile);
 			}
 			
 			let config = {
 				headers: {
-					'Content-Type': 'multipart/form-data',
+					'Content-Type': 'application/json, text/plain, */*, multipart/form-data',
 					'Authorization': 'Bearer ' + localStorage.getItem('ACCESS_TOKEN')
 				}
 			};
 			
-			let result = await axiosInstance.post('/member/update.php', bodyFormData, config);
+			let result = await axiosInstance.put('/users/' + id, bodyFormData, config);
 			commit('SET_LOADING', false);
+			console.log(result);
 			if (result.data.status === 200) {
-				commit('SET_CURRENT_USER', result.data.user);
+				commit('SET_CURRENT_USER', result.data.data);
 				return {
 					ok: true,
-					user: result.data.user
+					user: result.data.data
 				}
 			} else {
 				return {
