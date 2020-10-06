@@ -131,7 +131,6 @@
 				let {objImage, content, urlImage, categories} = this;
 				if (content && categories.length) {
 					if (urlImage || objImage.base64URL) {
-						
 						let data = {
 							content,
 							categories
@@ -153,7 +152,6 @@
 						}
 						this.createNewPost(data).then(res => {
 							if (res.ok) {
-								alert("");
 								this.$notify({
 									group: 'notify',
 									type: 'success',
@@ -201,5 +199,7 @@
 </script>
 
 <style scoped>
-
+	.row {
+		margin: 40px auto;
+	}
 </style>

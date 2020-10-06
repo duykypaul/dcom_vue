@@ -3,7 +3,7 @@
 		<p v-html="formatPostContent"></p>
 		<div class="ass1-section__image">
 			<router-link :to="getPostLink" href="bai-viet-chi-tiet.html">
-				<img :alt="post.post_content" :src="getPicture()" @click="handlePostDetail(post.id)">
+				<img :alt="post.content" :src="getPicture()" @click="handlePostDetail(post.id)">
 			</router-link>
 		</div>
 	</div>

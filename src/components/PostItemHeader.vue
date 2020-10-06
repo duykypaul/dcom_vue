@@ -30,7 +30,7 @@
 				return {name: 'user-page', params: {id: this.post.user.id}};
 			},
 			formatTimeAdded() {
-				moment.locale('vi');
+				moment.locale(this.$i18n.locale);
 				return moment(this.post.createdAt).fromNow();
 			},
 			getImageAvatar() {

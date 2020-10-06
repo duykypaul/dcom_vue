@@ -8,14 +8,12 @@
 					<div class="ass1-section" v-if="getPostDetail && getPostDetail.post">
 						<post-item :post="getPostDetail.post">
 							<template id="post-detail-categories">
-								<li :key="item.tag_index" v-for="item in getPostDetail.categories">
-									<router-link :to="getLinkCategory(item)">{{item.tag_value}}</router-link>
+								<li :key="item.id" v-for="item in getPostDetail.post.categories">
+									<router-link :to="getLinkCategory(item)">{{item.id}}</router-link>
 								</li>
 							</template>
 						</post-item>
-						<!--						<post-feeling/>-->
-					
-					
+						<!--<post-feeling/>-->
 					</div>
 					<post-comment-add/>
 					<post-comment-list/>
@@ -67,8 +65,8 @@
 				return {
 					name: 'home',
 					query: {
-						text: removeVietnameseFromString(category.tag_value),
-						tagIndex: category.tag_index
+						text: removeVietnameseFromString(category.name),
+						tagIndex: category.id
 					}
 				}
 			},
@@ -84,6 +82,9 @@
 </script>
 
 <style scoped>
+	.row {
+		margin: 68px auto;
+	}
 	#post-detail-categories {
 		list-style-type: none;
 	}

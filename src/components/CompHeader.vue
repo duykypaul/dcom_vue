@@ -18,7 +18,7 @@
 						<span class="avatar">
 							<img :src="getImageAvatar" alt="avatar">
 						</span>
-						<span class="email">{{getCurrentUser.email}}</span>
+						<span class="email">{{getCurrentUser.username}}</span>
 					</router-link>
 					<div @click.prevent="handleLogOut" class="logout">{{ $t('header.sign-out') }}</div>
 				</div>

@@ -1704,6 +1704,7 @@ select.form-control:focus {
 
 .ass1-head-user {
     border-bottom: solid 1px #e6e9f1;
+    margin: 40px auto;
 }
 
 .ass1-head-user__content {

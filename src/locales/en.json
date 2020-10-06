@@ -1,4 +1,8 @@
 {
+	"lang" : {
+		"en": "English",
+		"vi": "VietNamese"
+	},
 	"header": {
 		"category": "Category",
 		"find": "What are you looking for ...",

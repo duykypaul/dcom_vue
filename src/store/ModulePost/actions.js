@@ -39,14 +39,14 @@ export default {
 	async getPostDetailByPostId({commit, dispatch}, postid = null) {
 		commit('SET_LOADING', true);
 		try {
-			let result = await axiosInstance.get('/post/post.php?postid=' + postid);
+			let result = await axiosInstance.get('/posts/' + postid);
 			commit('SET_LOADING', false);
 			if (result.data && result.data.status === 200) {
 				console.log("post detail success");
-				let resultUser = await dispatch('getUserById', result.data.data.post.USERID);
-				// console.log("resultUser: ", resultUser);
+				let resultUser = await dispatch('getUserById', result.data.data.user.id);
+				console.log("resultUser: ", resultUser);
 				
-				// commit('SET_USER_INFO', result.data.data);
+				commit('SET_USER_INFO', result.data.data.user);
 				commit('SET_POST_DETAIL', result.data.data);
 				return {
 					ok: true,
@@ -96,11 +96,11 @@ export default {
 			
 			// For image
 			if (objImage) {
-				bodyFormData.append('objImage', objImage);
+				bodyFormData.append('fileImage', objImage);
 			}
 			let config = {
 				headers: {
-					accept: 'multipart/form-data',
+					accept: 'application/json, text/plain, */*, multipart/form-data',
 					Authorization: 'Bearer ' + localStorage.getItem('ACCESS_TOKEN')
 				}
 			};

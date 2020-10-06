@@ -1,4 +1,8 @@
 {
+	"lang" : {
+		"en": "Tiếng Anh",
+		"vi": "Tiếng Việt"
+	},
   "header": {
 	  "category": "Danh mục",
 	  "find": "Nhập từ khóa ...",
