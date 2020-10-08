@@ -39,7 +39,7 @@
 			formatFullname() {
 				if (this.querySearch) {
 					// Replace html
-					return replaceAll(this.post.username, this.querySearch, `<mark>${this.querySearch}</mark>`)
+					return replaceAll(this.post.user.username, this.querySearch, `<mark>${this.querySearch}</mark>`)
 				} else {
 					return this.post.user.username;
 				}

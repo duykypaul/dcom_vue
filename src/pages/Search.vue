@@ -1,5 +1,5 @@
 <template>
-	<div class="search-page">
+	<div class="container search-page" v-if="this.listPostSearch">
 		<div class="search-info">
 			<h3>Từ khóa tìm kiểm: <strong>{{ query }}</strong></h3>
 			<p>Tìm kiếm được ({{ this.listPostSearch.length }}) kết quả</p>
@@ -17,7 +17,7 @@
 			
 			<post-item
 				class="col-lg-6"
-				v-bind:key="item.PID"
+				v-bind:key="item.id"
 				v-bind:post="item"
 				v-for="item in listPostSearch"
 				v-masonry-tile
@@ -65,13 +65,11 @@
 					this.getListPostSearch(this.query).then(res => {
 						if (res.ok) {
 							this.listPostSearch = res.posts;
-							
 							// Data changed
 							this.$redrawVueMasonry();
 						}
 					})
 				}
-				
 			}
 		}
 	}
@@ -79,7 +77,7 @@
 
 <style>
 	.search-page {
-		margin-top: 45px;
+		margin: 80px auto;
 	}
 	
 	.search-info {

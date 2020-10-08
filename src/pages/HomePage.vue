@@ -22,7 +22,7 @@
 		name: "home-page",
 		components: {SideBar, PostList},
 		watch: {
-			$route(to, from) {
+			$route: function (to, from) {
 				let tagIndex = to.query.tagIndex;
 				console.log(tagIndex);
 				this.getListPostHasPaging({tagIndex});

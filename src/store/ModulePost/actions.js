@@ -65,13 +65,13 @@ export default {
 	async getListPostSearch({commit}, searchStr) {
 		commit('SET_LOADING', true);
 		try {
-			const result = await axiosInstance.get('/post/search.php?query=' + searchStr);
+			const result = await axiosInstance.get('/posts/search/' + searchStr);
 			commit('SET_LOADING', false);
 			
 			if (result.data.status === 200) {
 				return {
 					ok: true,
-					posts: result.data.posts
+					posts: result.data.data
 				}
 			} else {
 				return {
