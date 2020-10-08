@@ -12,6 +12,7 @@ import LoginPage from "./pages/LoginPage";
 import NotFound from "./pages/NotFound";
 import Search from "./pages/Search";
 import VerifyEmail from "./pages/VerifyEmail";
+import VerifyEmailToken from "./pages/VerifyEmailToken";
 
 import {ifAuthenticated, ifNotAuthenticated} from './plugins/authenticate';
 
@@ -74,8 +75,14 @@ const routes = [
 	},
 	{
 		path: '/verify-email',
-		name: 'verify email',
+		name: 'verify-email',
 		component: VerifyEmail,
+		beforeEnter: ifNotAuthenticated
+	},
+	{
+		path: '/verify-email/:token',
+		name: 'verify-email-token',
+		component: VerifyEmailToken,
 		beforeEnter: ifNotAuthenticated
 	},
 	{

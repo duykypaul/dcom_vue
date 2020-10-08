@@ -72,7 +72,11 @@
 				'getCurrentUser'
 			]),
 			getAvatarImage() {
-				return getAvatar(this.getCurrentUser.profilePicture);
+				console.log(this.getCurrentUser);
+				if (this.avatar.base64 === '' && this.getCurrentUser) {
+					return getAvatar(this.getCurrentUser.profilePicture);
+				}
+				return this.avatar.base64;
 			}
 			
 		},
@@ -81,9 +85,6 @@
 				'updateProfile'
 			]),
 			checkCurrentUser() {
-				console.log("this.getCurrentUser.USERID", this.getCurrentUser.id);
-				console.log("this.userId", this.userId);
-				
 				if (this.getCurrentUser.id && this.userId) {
 					if (this.userId != this.getCurrentUser.id) {
 						this.$router.push({name: 'home', query: {direction: this.$route.name}});
@@ -111,9 +112,20 @@
 					
 					this.updateProfile(data).then(res => {
 						if (res.ok) {
-							alert('Update thông tin Profile thành công!');
+							this.$notify({
+								group: 'notify',
+								type: 'success',
+								title: 'Success!',
+								text: 'Update thông tin Profile thành công!'
+							});
+							this.$router.push({name: 'user-page', query: {direction: this.$route.name}});
 						} else {
-							alert(res.error);
+							this.$notify({
+								group: 'notify',
+								type: 'error',
+								title: 'Error!',
+								text: res.error
+							});
 						}
 					})
 				}
@@ -124,8 +136,7 @@
 					
 					let reader = new FileReader();
 					reader.onload = (e) => {
-						let previewSrc = e.target.result;
-						this.avatar.base64 = previewSrc;
+						this.avatar.base64 = e.target.result;
 						this.avatar.objFile = avatarFile;
 					};
 					reader.onerror = function (error) {

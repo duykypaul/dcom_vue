@@ -16,12 +16,9 @@ let ifNotAuthenticated = (to, from, next) => {
 };
 let ifAuthenticated = (to, from, next) => {
 	// yêu cầu login trước khi đến đích
-	console.log(isNotExpiryJwt(localStorage.getItem('ACCESS_TOKEN')));
 	if (store.getters.getIsLogin && isNotExpiryJwt(localStorage.getItem('ACCESS_TOKEN'))) {
-		console.log("ifAuthenticated");
 		next();
 	} else {
-		console.log("store.getters.getIsLogin: ", store.getters.getIsLogin);
 		next({
 			name: 'login',
 			query: {

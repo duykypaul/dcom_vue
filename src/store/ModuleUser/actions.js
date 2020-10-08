@@ -55,7 +55,6 @@ export default {
 				}
 			}
 		} catch (error) {
-			console.log("err server: ", error);
 			return {
 				ok: false,
 				error: error.message
@@ -132,7 +131,6 @@ export default {
 				password,
 				repassword
 			};
-			console.log(data);
 			let resultUser = await axiosInstance.post("/auth/sign-up", data);
 			commit('SET_LOADING', false);
 			console.log('resultUser: ', resultUser);
@@ -156,7 +154,6 @@ export default {
 			}
 		} catch (error) {
 			commit('SET_LOADING', false);
-			console.log("error.message", error.message);
 			return {
 				ok: false,
 				error: error.message
@@ -186,7 +183,6 @@ export default {
 			
 			let result = await axiosInstance.put('/users/' + id, bodyFormData, config);
 			commit('SET_LOADING', false);
-			console.log(result);
 			if (result.data.status === 200) {
 				commit('SET_CURRENT_USER', result.data.data);
 				return {
@@ -199,7 +195,6 @@ export default {
 					error: result.data.error
 				}
 			}
-			
 		} catch (error) {
 			commit('SET_LOADING', false);
 			return {
@@ -223,7 +218,6 @@ export default {
 			};
 			console.log("change_password: ");
 			let change_password = await axiosInstance.post("/member/password.php", data, config);
-			console.log("change_password: ", change_password);
 			if (change_password.data && change_password.data.status === 200) {
 				return {
 					ok: true,
@@ -237,6 +231,20 @@ export default {
 			}
 		} catch (e) {
 			console.log("catch");
+			return {
+				ok: false,
+				error: e.error
+			}
+		}
+	},
+	async verifyEmail({commit}, {token = ''}) {
+		try {
+			let verifyEmail = await axiosInstance.post("/auth/confirm-account?token=" + token);
+			return {
+				ok: verifyEmail.data && verifyEmail.data.status === 200,
+				message: verifyEmail.data.message
+			}
+		} catch (e) {
 			return {
 				ok: false,
 				error: e.error

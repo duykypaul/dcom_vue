@@ -5,18 +5,12 @@
 			<div class="col-lg-8">
 				<!--section-->
 				<div class="ass1-section__list">
-					<div class="ass1-section" v-if="getPostDetail && getPostDetail.post">
-						<post-item :post="getPostDetail.post">
-							<template id="post-detail-categories">
-								<li :key="item.id" v-for="item in getPostDetail.post.categories">
-									<router-link :to="getLinkCategory(item)">{{item.id}}</router-link>
-								</li>
-							</template>
-						</post-item>
-						<!--<post-feeling/>-->
+					<div class="ass1-section" v-if="getPostDetail">
+						<post-item :post="getPostDetail" />
+						<post-feeling/>
 					</div>
 					<post-comment-add/>
-					<post-comment-list/>
+					<post-comment-list :post="getPostDetail"/>
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -84,8 +78,5 @@
 <style scoped>
 	.row {
 		margin: 68px auto;
-	}
-	#post-detail-categories {
-		list-style-type: none;
 	}
 </style>

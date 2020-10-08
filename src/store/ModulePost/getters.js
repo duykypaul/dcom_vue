@@ -4,11 +4,8 @@ export default {
 	},
 	getPostDetail: state => {
 		if (state.postDetail) {
-			return {
-				post: {
-					...state.postDetail,
-				}
-			};
+			console.log(state.postDetail);
+			return state.postDetail;
 		}
 	}
 }

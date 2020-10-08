@@ -371,7 +371,7 @@ select.form-control:focus {
 .ass1-avatar {
     display: block;
     background-color: #ffffff;
-    border-radius: 6px;
+    border-radius: 19px;
     min-width: 38px;
     width: 38px;
     height: 38px;
@@ -1327,6 +1327,7 @@ select.form-control:focus {
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
+    justify-content: space-between;
 }
 
 .ass1-section__footer .ass1-btn-icon {

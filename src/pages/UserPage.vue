@@ -55,16 +55,22 @@
 				'getListPostByUserId'
 			]),
 			async fetchAllData() {
-				console.log("fetchAllData");
-				this.setLoading(true);
-				let promiseUser = this.getUserById(this.userId);
-				let promiseUserPosts = this.getListPostByUserId(this.userId);
-				let [resultUser, resultUserPosts] = await Promise.all([promiseUser, promiseUserPosts]);
-				this.setLoading(false);
-				if (resultUser.ok && resultUserPosts.ok) {
-					this.UserInfo = resultUser.data;
-					this.PostsOfUser = resultUserPosts.data || [];
+				try {
+					console.log("fetchAllData");
+					this.setLoading(true);
+					let promiseUser = this.getUserById(this.userId);
+					let promiseUserPosts = this.getListPostByUserId(this.userId);
+					let [resultUser, resultUserPosts] = await Promise.all([promiseUser, promiseUserPosts]);
+					this.setLoading(false);
+					if (resultUser.ok && resultUserPosts.ok) {
+						this.UserInfo = resultUser.data;
+						this.PostsOfUser = resultUserPosts.data || [];
+					}
+				} catch (e) {
+					console.log("fetchAllData error");
+					await this.$router.push({name: 'not-found', query: {direction: this.$route.name, userid: this.$route.params.id}});
 				}
+				
 			}
 		},
 		created() {

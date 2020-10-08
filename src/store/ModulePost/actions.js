@@ -18,7 +18,7 @@ export default {
 			let result;
 			if (tagIndex) {
 				// config.params.tagIndex = tagIndex;
-				result = await axiosInstance.get('/posts/pagination', config);
+				result = await axiosInstance.get('/posts/pagination/' + tagIndex + "/category", config);
 			} else {
 				result = await axiosInstance.get('/posts/pagination', config);
 			}

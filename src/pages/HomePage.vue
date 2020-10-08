@@ -25,7 +25,7 @@
 			$route(to, from) {
 				let tagIndex = to.query.tagIndex;
 				console.log(tagIndex);
-				this.getListPostHasPaging({tagIndex: tagIndex});
+				this.getListPostHasPaging({tagIndex});
 			}
 		},
 		methods: {
