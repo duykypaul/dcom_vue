@@ -1,3 +1,5 @@
+import {VUE_APP_API_URL} from "../constants";
+
 let removeVietnameseFromString = (str) => {
 	str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
 	str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
@@ -69,7 +71,7 @@ const checkImageFile = (file) => {
 const getAvatar = (urlImage) => {
 	try {
 		if (urlImage) {
-			return urlImage.startsWith("http") ? urlImage : ("http://localhost:1102/api/users/get-image/" + urlImage);
+			return urlImage.startsWith("http") ? urlImage : (VUE_APP_API_URL + "/users/get-image/" + urlImage);
 		}
 	} catch (e) {
 		console.log(e);

@@ -3,7 +3,7 @@
 		<comp-header v-if="isRenderHeader"/>
 		<router-view/>
 		<comp-footer v-if="isRenderFooter"/>
-		<notifications group="notify" :duration="2000" position="top center" style="z-index: 10000"/>
+		<notifications group="notify" :duration="2000" position="bottom right"/>
 		<app-loading :class="{show: isLoading}"/>
 	</div>
 </template>

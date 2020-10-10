@@ -10,5 +10,11 @@ export default {
 	},
 	REMOVE_LIST_POSTS(state) {
 		state.listPosts = null;
+	},
+	ADD_COMMENT_TO_POST_DETAIL(state, data) {
+		state.postDetail.comments = [
+			data,
+			...state.postDetail.comments
+		];
 	}
 }

@@ -12,6 +12,7 @@
 <script>
 	import {mapActions} from "vuex";
 	import {replaceAll} from "../helpers";
+	import {VUE_APP_API_URL} from "../constants";
 	
 	export default {
 		name: "post-item-content",
@@ -47,9 +48,8 @@
 				if (this.post.urlImage.startsWith("http")) {
 					return this.post.urlImage;
 				} else {
-					return "http://localhost:1102/api/posts/get-image/" + this.post.urlImage;
+					return VUE_APP_API_URL + "/posts/get-image/" + this.post.urlImage;
 				}
-				
 			}
 		}
 	}

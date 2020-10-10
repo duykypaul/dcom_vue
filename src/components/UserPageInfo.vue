@@ -31,11 +31,11 @@
 					<!-- <a href="#" class="ass1-head-user__btn-options ass1-btn-icon"><i class="icon-Options"></i></a> -->
 				</div>
 				<div class="ass1-head-user__info-statistic">
-					<div class="ass1-btn-icon"><i class="icon-Post"></i><span>Bài viết: {{countPost}}</span></div>
-					<div class="ass1-btn-icon"><i class="icon-Followers"></i><span>Theo dõi: {{user.yourViewed}}</span>
+					<div class="ass1-btn-icon"><i class="icon-Post"></i><span>Bài viết: {{countPost || 0}}</span></div>
+					<div class="ass1-btn-icon"><i class="icon-Followers"></i><span>Theo dõi: {{user.yourViewed || 0}}</span>
 					</div>
 					<div class="ass1-btn-icon"><i
-						class="icon-Following"></i><span>Đang theo dõi: {{user.youViewed}}</span></div>
+						class="icon-Following"></i><span>Đang theo dõi: {{user.youViewed || 0}}</span></div>
 					<!-- <div class="ass1-btn-icon"><i class="icon-Upvote"></i><span>Up Vote: 999999</span></div> -->
 				</div>
 				<p>{{user.description}}</p>

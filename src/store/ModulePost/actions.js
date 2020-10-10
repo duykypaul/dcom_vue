@@ -36,6 +36,7 @@ export default {
 			console.log(error);
 		}
 	},
+	
 	async getPostDetailByPostId({commit, dispatch}, postid = null) {
 		commit('SET_LOADING', true);
 		try {
@@ -62,6 +63,7 @@ export default {
 			}
 		}
 	},
+	
 	async getListPostSearch({commit}, searchStr) {
 		commit('SET_LOADING', true);
 		try {
@@ -86,6 +88,7 @@ export default {
 			}
 		}
 	},
+	
 	async createNewPost({commit}, {objImage = null, content = '', urlImage = '', categories = []}) {
 		commit('SET_LOADING', true);
 		try {
@@ -128,6 +131,7 @@ export default {
 			}
 		}
 	},
+	
 	async getListCommentByPostid({commit}, postid) {
 		try {
 			let result = await axiosInstance.get('/comment/comments.php?postid=' + postid);
@@ -149,4 +153,36 @@ export default {
 			}
 		}
 	},
+	
+	async addCommentToPostDetail({commit}, data) {
+		commit('SET_LOADING', true);
+		try {
+			let result = await axiosInstance.post('/comments', data);
+			console.log("create comments: ", result);
+			commit('SET_LOADING', false);
+			if (result.data && result.data.status === 200) {
+				let comment = result.data.data;
+				console.log('content comment: ', comment);
+				commit('ADD_COMMENT_TO_POST_DETAIL', comment);
+				return {
+					ok: true,
+					data: comment
+				}
+			} else {
+				return {
+					ok: true,
+					data: result.data.message
+				}
+			}
+		} catch (e) {
+			console.log("create error: ", e);
+			commit('SET_LOADING', false);
+			return {
+				ok: false,
+				error: e.message
+			}
+		}
+		
+	}
+	
 }

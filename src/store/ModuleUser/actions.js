@@ -33,7 +33,7 @@ export default {
 				username,
 				password
 			};
-			
+			console.log(axiosInstance.headers);
 			let result = await axiosInstance.post('auth/sign-in', data);
 			if (result.data && result.data.status === 200) {
 				let dataUser = {
